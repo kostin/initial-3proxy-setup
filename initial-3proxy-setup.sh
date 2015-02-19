@@ -3,9 +3,10 @@
 DLPATH='https://github.com/kostin/initial-3proxy-setup/raw/master'
 
 if grep -q 'CentOS release 6' /etc/redhat-release; then
-	echo 'Starting with '`hostname`
+	clear
+	echo 'Starting install 3proxy on '`hostname`
 	echo 'Press Enter to continue (Ctrl+C to exit)!'
-  read
+	read
 else
 	echo 'Wrong OS!';
 	exit 0;
