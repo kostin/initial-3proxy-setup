@@ -31,6 +31,7 @@ else
 	cp /etc/3proxy.cfg /etc/3proxy.cfg.dist
 	cd /etc
 	wget -N $DLPATH/3proxy.cfg
+	chmod 600 /etc/3proxy.cfg
 	sed -i "s/mytestuser/$USER/g" /etc/3proxy.cfg
 	sed -i "s/mytestpassword/$PASSWORD/g" /etc/3proxy.cfg
 	echo "3proxy user: $USER"
