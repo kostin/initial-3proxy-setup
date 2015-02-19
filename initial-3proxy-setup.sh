@@ -12,7 +12,7 @@ else
 fi
 
 USER=`hostname -s`
-IP=`ip addr show eth0 | grep 'inet ' | awk '{print $2}' | awk -F/ '{print $1}'`
+#IP=`ip addr show eth0 | grep 'inet ' | awk '{print $2}' | awk -F/ '{print $1}'`
 
 if [ -a /root/.3proxy-password ]; then 
 	PASSWORD=`cat /root/.3proxy-password`	
@@ -21,9 +21,10 @@ else
 	yum -y install epel-release
 	sed -i "s/mirrorlist=https/mirrorlist=http/" /etc/yum.repos.d/epel.repo
 	yum -y update
-	yum -y install pwgen 3proxy
+	yum -y install pwgen curl 3proxy
 	yum -y clean all
 	PASSWORD=`pwgen 16 1`
+	IP=`curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`
 	echo $PASSWORD > /root/.3proxy-password
 	chmod 400 /root/.3proxy-password
 	cp /etc/3proxy.cfg /etc/3proxy.cfg.dist
