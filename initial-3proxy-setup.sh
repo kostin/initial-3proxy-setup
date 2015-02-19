@@ -18,9 +18,11 @@ if [ -a /root/.3proxy-password ]; then
 	PASSWORD=`cat /root/.3proxy-password`	
 	echo "Already set up with password $PASSWORD"
 else
-	yum update
-	yum install pwgen 3proxy
-	yum clean all
+	yum -y install epel-release
+	sed -i "s/mirrorlist=https/mirrorlist=http/" /etc/yum.repos.d/epel.repo
+	yum -y update
+	yum -y install pwgen 3proxy
+	yum -y clean all
 	PASSWORD=`pwgen 16 1`
 	echo $PASSWORD > /root/.3proxy-password
 	chmod 400 /root/.3proxy-password
