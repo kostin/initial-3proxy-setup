@@ -38,6 +38,6 @@ else
 	echo "3proxy password: $PASSWORD"
 	echo "3proxy IP: $IP"
 	echo "3proxy HTTP/HTTPS default port: 3128"
-	service 3proxy start
+	service 3proxy restart
 	chkconfig 3proxy on
 fi
